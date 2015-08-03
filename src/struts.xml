@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.custom.i18n.resources" value="message" />
+	<constant name="struts.multipart.maxSize" value="20971520" />
+    <package name="crm" namespace="/" extends="struts-default">
+    	<interceptors>
+    		<interceptor name="loginInterceptor" class="yang.fang.web.action.LoginInterceptor" />
+    	</interceptors>
+    	<action name="user_*" class="yang.fang.web.action.UserAction" method="{1}">
+    		<param name="resumepath">/WEB-INF/resumes</param>
+    		<result name="loginSucc">/login/home.jsp</result>
+    		<result name="loginInput">/login/login.jsp</result>
+    		<result name="loginError">/login/login.jsp</result>
+    		<result name="listSucc">/user/list.jsp</result>
+    		<result name="addInput">/user/add.jsp</result>
+    		<result type="redirectAction" name="addSucc">user_list</result>
+    		<result type="redirectAction" name="delSucc">user_list</result>
+    		<result name="viewSucc">/user/view.jsp</result>
+    		<result name="downloadSucc" type="stream">
+    			<param name="contentType">${mime}</param>
+    			<param name="contentDisposition">attachment;filename=${[1].filename}</param>
+    		</result>
+    		<result name="editViewSucc">/user/edit.jsp</result>
+    		<result name="editSucc" type="redirectAction">user_list</result>
+    		<result name="login">/login/login.jsp</result>
+    		
+    		<interceptor-ref name="defaultStack" />
+    		<interceptor-ref name="loginInterceptor">
+    			<param name="excludeMethods">login</param>
+    		</interceptor-ref>
+    	</action>
+    	<action name="department_*" class="yang.fang.web.action.DepartmentAction" method="{1}">
+    		<result name="{1}">/department/{1}.jsp</result>
+    		<result name="addUI">/department/add.jsp</result>
+    		<result type="redirectAction" name="addSucc">department_list</result>
+    		<result type="redirectAction" name="editSucc">department_list</result>
+    		<result type="redirectAction" name="delSucc">department_list</result>
+    	</action>
+    </package>
+</struts>
+
+
