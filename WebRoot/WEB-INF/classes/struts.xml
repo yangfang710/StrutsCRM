@@ -41,6 +41,17 @@
     		<result type="redirectAction" name="editSucc">department_list</result>
     		<result type="redirectAction" name="delSucc">department_list</result>
     	</action>
+    	<action name="project_*" class="yang.fang.web.action.ProjectAction" method="{1}">
+    		<result name="{1}">/project/{1}.jsp</result>
+    		<result name="addUI">/project/add.jsp</result>
+    		<result name="downloadSucc" type="stream">
+    			<param name="contentType">${mime}</param>
+    			<param name="contentDisposition">attachment;filename=${[1].fileName}</param>
+    		</result>
+    		<result type="redirectAction" name="addSucc">project_list</result>
+    		<result type="redirectAction" name="editSucc">project_list</result>
+    		<result type="redirectAction" name="delSucc">project_list</result>
+    	</action>
     </package>
 </struts>
 

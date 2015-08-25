@@ -29,6 +29,8 @@
 		d.add(3,0,'部门管理','<c:url value="/login/welcome.jsp"/>','','mainFrame');
 		//子目录添加
 		d.add(4,2,'用户管理','<s:url action="user_list" namespace="/"/>','','mainFrame');
+		d.add(6,2,'项目管理','<s:url action="project_list" namespace="/"/>','','mainFrame');
+		d.add(7,2,'差旅管理','<s:url action="business_list" namespace="/"/>','','mainFrame');
 		d.add(5,3,'部门管理','<s:url action="department_list" namespace="/"/>','','mainFrame');
 
 		
